@@ -25,4 +25,9 @@ public class StudentDaoImplement implements StudentDao{
     public void save(Student student) {
         entityManger.persist(student);
     }
+
+    @Override
+    public Student findById(Long id) {
+        return entityManger.find(Student.class, id);
+    }
 }
