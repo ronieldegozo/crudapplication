@@ -22,8 +22,19 @@ public class CrudapplicationApplication {
 //			createStudent(studentDao);
 //			createMultipleStudent(studentDao);
 //			readStudent(studentDao);
-			retrieveListStudents(studentDao);
+//			retrieveListStudents(studentDao);
+			retrieveStudentByLastName(studentDao);
 		};
+	}
+
+	private void retrieveStudentByLastName(StudentDao studentDao) {
+		//retrieve list of Student
+		List<Student> students = studentDao.findByLastName("Laurito");
+
+		for (Student student : students){
+			System.out.println("Test Student " + student);
+		}
+
 	}
 
 	private void retrieveListStudents(StudentDao studentDao) {
