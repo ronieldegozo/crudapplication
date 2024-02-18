@@ -2,6 +2,7 @@ package com.rougeniel.crudapplication;
 
 import com.rougeniel.crudapplication.dao.StudentDao;
 import com.rougeniel.crudapplication.entity.Student;
+import jakarta.persistence.EntityManager;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @SpringBootApplication
 public class CrudapplicationApplication {
+	private EntityManager entityManger;
 
 	public static void main(String[] args) {
 		SpringApplication.run(CrudapplicationApplication.class, args);
@@ -24,9 +26,23 @@ public class CrudapplicationApplication {
 //			readStudent(studentDao);
 //			retrieveListStudents(studentDao);
 //			retrieveStudentByLastName(studentDao);
-			updateStudent(studentDao);
-
+//			updateStudent(studentDao);
+			deleteStudent(studentDao);
 		};
+	}
+
+	private void deleteStudent(StudentDao studentDao) {
+		long studentId = 5;
+
+		System.out.println("Delete Student ID: " + studentId);
+		Student myStudent = studentDao.findById(studentId);
+
+		if(myStudent == null ){
+			System.out.println("Student has Empty on the Database");
+		}else{
+			studentDao.delete(studentId);
+			System.out.println("Successfully deleted!");
+		}
 	}
 
 	private void updateStudent(StudentDao studentDao) {
