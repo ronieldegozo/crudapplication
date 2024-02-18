@@ -66,4 +66,12 @@ public class StudentDaoImplement implements StudentDao{
         entityManger.remove(student);
     }
 
+    //executeUpdate uses for modifyng the database
+    @Override
+    @Transactional
+    public long deleteAll() {
+        long numRowsDeleted = entityManger.createQuery("DELETE FROM Student").executeUpdate();
+        return numRowsDeleted;
+    }
+
 }

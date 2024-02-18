@@ -27,8 +27,16 @@ public class CrudapplicationApplication {
 //			retrieveListStudents(studentDao);
 //			retrieveStudentByLastName(studentDao);
 //			updateStudent(studentDao);
-			deleteStudent(studentDao);
+//			deleteStudent(studentDao);
+			deleteAllStudents(studentDao);
 		};
+	}
+
+	private void deleteAllStudents(StudentDao studentDao) {
+
+		System.out.println("Deleting All the Student on the database");
+		long numRowsDeleted = studentDao.deleteAll();
+		System.out.println("Delete Successfully " + numRowsDeleted);
 	}
 
 	private void deleteStudent(StudentDao studentDao) {
