@@ -2,9 +2,12 @@ package com.rougeniel.crudapplication.dao;
 
 import com.rougeniel.crudapplication.entity.Student;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Repository
 public class StudentDaoImplement implements StudentDao{
@@ -29,5 +32,13 @@ public class StudentDaoImplement implements StudentDao{
     @Override
     public Student findById(Long id) {
         return entityManger.find(Student.class, id);
+    }
+
+    @Override
+    public List<Student> findAll() {
+        TypedQuery<Student> theQuery = entityManger.createQuery("FROM Student order by lastName asc", Student.class);
+//        TypedQuery<Student> listStudentOrderByAsc = entityManger.createQuery("FROM Student order by lastName asc", Student.class);
+
+        return theQuery.getResultList();
     }
 }
