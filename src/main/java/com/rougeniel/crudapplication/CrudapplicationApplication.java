@@ -23,8 +23,30 @@ public class CrudapplicationApplication {
 //			createMultipleStudent(studentDao);
 //			readStudent(studentDao);
 //			retrieveListStudents(studentDao);
-			retrieveStudentByLastName(studentDao);
+//			retrieveStudentByLastName(studentDao);
+			updateStudent(studentDao);
+
 		};
+	}
+
+	private void updateStudent(StudentDao studentDao) {
+		//retrieve student base on id
+		long studentId = 4;
+		System.out.println("Retreive Student ID : " + studentId);
+
+		Student myStudent = studentDao.findById(studentId);
+		System.out.println("Student Trieve base on ID : " + myStudent);
+
+		if(myStudent == null){
+			System.out.println("No Student Found!");
+		}else{
+			//Update the firstName
+			myStudent.setFirstName("Rogine");
+			myStudent.setLastName("De Gozo");
+			studentDao.update(myStudent);
+			System.out.println("Student : "+ myStudent);
+		}
+
 	}
 
 	private void retrieveStudentByLastName(StudentDao studentDao) {

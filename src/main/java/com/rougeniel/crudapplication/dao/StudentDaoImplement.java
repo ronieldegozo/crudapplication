@@ -51,4 +51,12 @@ public class StudentDaoImplement implements StudentDao{
         //return result
         return studLastName.getResultList();
     }
+
+//    @Transactional uses for updating the data into the database
+    @Override
+    @Transactional
+    public void update(Student student) {
+        entityManger.merge(student);
+    }
+
 }
